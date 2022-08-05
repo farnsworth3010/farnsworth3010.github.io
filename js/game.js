@@ -17,11 +17,23 @@ function worldMsg(text){
 
 }
 
+function delay(func, ms){
+    console.log(func)
+    return new Promise(resolve => {
+        setTimeout(()=>{
+ 
+            func()
+            resolve()
+        }, ms)
+    })
+}
+
 function heroMsg(text){
-    let timeToRead = (text.split(/\s+/).length/2)*100
-    if(timeToRead < 2000){
-        timeToRead = 2000
-    }
+    //  let timeToRead = (text.split(/\s+/).length/2)*100
+    let timeToRead
+    // if(timeToRead < 2000){
+        timeToRead = 300
+    // }
     setOnline("Печатает...")
     return new Promise(resolve => {
         setTimeout(()=>{
@@ -51,7 +63,7 @@ function heroMsg(text){
 
     
 }
-function myMsg(text){
+let myMsg = (text)=>{
         let date = new Date()
         let hour = date.getHours()
         if(hour>=0 & hour <=9){
@@ -102,16 +114,16 @@ function setOnline(online){
     document.getElementById("hero-status").innerHTML = online
 }
 
-function rememberThat(type){
+async function rememberThat(type){
     switch(type){
         case 0:
-            worldMsg("*Theodor запомнил это*")
+            await worldMsg("*Theodor запомнил это*")
             break;
         case 1: 
-            worldMsg("*Theodor запомнил это*")
+            await worldMsg("*Theodor возмущён вашим ответом*")
             break;
         case 2:
-            worldMsg("*Theodor запомнил это*")
+            await worldMsg("*Theodor рад вашей поддержке*")
             break;
     }
 }
@@ -136,7 +148,6 @@ function makeChoice(choices, answers){
         for(let i of choicesBtns){
             i.addEventListener('click',()=>{
                 waitingForChoice = false
-
             })
         }
         function wait(){
@@ -153,10 +164,10 @@ function makeChoice(choices, answers){
                     setTimeout(()=>{
                         document.getElementById('choices-block').innerHTML = `
                         <div class="waiting">
-                        waiting
+                        
                         </div>
                         `
-                    } ,300)
+                    }, 300)
 
                 }
             }, 100)
@@ -191,11 +202,9 @@ function checkTimeInteractive(){
 let player_name = "x"
 
 async function start(){
-
-    await worldMsg("Добро пожаловать в 15-минутный интерактивный квест по игре The Walking Dead!")
-    await worldMsg("Игра адаптируется под ваши действия.")
-    await worldMsg("История развивается так, как вы поступаете.")
-    
+    // await worldMsg("Добро пожаловать в 15-минутный интерактивный квест по игре The Walking Dead!")
+    // await worldMsg("Игра адаптируется под ваши действия.")
+    // await worldMsg("История развивается так, как вы поступаете.")
     await heroMsg("Хей "+player_name+". Не скучаешь там с температурой?")
     
     choices = ["Да, немного скучно", "Нет, мне и тут хорошо"]
@@ -210,11 +219,11 @@ async function start(){
     await heroMsg(answers[choice])
     if(choice == 0){
         coldrelations = 0
-        rememberThat(2)
+        await rememberThat(2)
     }
     else{
         coldrelations = 1
-        rememberThat(1)  
+        await rememberThat(1)  
     }
     await heroMsg("Прикинь, "+player_name+", над нами только что пролетел вертолет, военный. Странно, ведь везде тихо, ничего необычного. В новостях тоже ничего.")
     myMsg("Может стоит оглядеться?")
@@ -224,14 +233,14 @@ async function start(){
     checkTimeInteractive()
     await heroMsg(answers[choice])
     if(choice == 0 || choice == 1){
-        myMsg("А, ну тогда все нормально. Не переживай.")
+        await myMsg("А, ну тогда все нормально. Не переживай.")
         await heroMsg("Пожалуй, ты прав")
         optionNoCarNoticed()
     }
     else{
-        myMsg("Ого! Может ему нужна помощь?")
+        await myMsg("Ого! Может ему нужна помощь?")
         await heroMsg("Возможно")
-        myMsg("Попросишь водителя вашего автобуса остановиться?")
+        await myMsg("Попросишь водителя вашего автобуса остановиться?")
         if(coldrelations == 0){
             await heroMsg("Пожалуй ты прав, секунду...")
             await heroMsg("я попросил водителя снизить скорость. он поровнялся с машиной.")
@@ -269,11 +278,11 @@ async function optionNoCarNoticed(){
     await heroMsg("Что за чертовщина?.. Дорога спереди заставлена брошенными машинами, мы останавливаемся")
     await heroMsg("Все повскакивали с мест. Смотрят на свалку. автобус остановили.")
     setOnline("Был в сети только что")
-    myMsg("ау")
-    myMsg("ауууууууууу")
-    myMsg("аууауауауау")
-    myMsg("ау1!!!!!!!")
-    myMsg("ЧЕЛ")
+    await delay(()=>{myMsg("ауууу")}, 5000)
+    await delay(()=>{myMsg("ауууууууу")}, 1000)
+    await delay(()=>{myMsg("АУАУАУАУ")}, 2000)
+    await delay(()=>{myMsg("ауууу")}, 1000)
+    await delay(()=>{myMsg("чел")}, 1000)
     carCrash("critical")
 }
 
@@ -301,14 +310,80 @@ async function carCrash(damage){
     await heroMsg(answers[choice])
 
     myMsg("здесь мог быть текст, но автор не дописал сценарий")
+    await howArePeopleAfterCrash()
+
+    await myMsg("Может быть тебе стоит сходить и проверить")
+    choices = ["осмотри вокруг автобус, может что уцелело?", "Может стоит сходить посмотреть на ту свалку машин?", "Стоит найти помощь"]
+    choice = await makeChoice(choices)
+    switch(choice){
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+    }
     }
   else{
     await heroMsg("Автобус попытался остановить машину, не справился с управлением и врезался в дерево")
     choices = ["Ты в порядке?", "ЧТО?!!"]
-    answers = ["Да, мне повезло. Я увидел,что машина приближается, и успел спятаться.", "Мне повезло. Я увидел,что машина приближается, и успел спятаться."]
+    answers = ["Да, мне повезло. Я увидел,что машина приближается, и успел спрятаться.", "Мне повезло. Я увидел,что машина приближается, и успел спятаться."]
     choice = await makeChoice(choices)
     await heroMsg(answers[choice])
     await heroMsg("Пара ссадин и синяков. Хорошо, что автобус не перевернулся.")
+    await howArePeopleAfterCrash()
+    
+    await myMsg("Может быть тебе стоит сходить и проверить")
+    choices = ["автобус внутри? мало ли что ценное осталось", "та машина, что с ней?", "Давай к дороге, посмори, что там происходит"]
+    choice = await makeChoice(choices)
+    switch(choice){
+        case 0:
+            await heroMsg("Я нашел воду.")
+            break;
+        case 1:
+            await heroMsg("Вся в смятку, можно подойти обыскать её")
+            break;
+        case 2:
+            await heroMsg("Всё заставлено машинами без людей")
+            break;
+    }
+
     }
 }
+
+async function howArePeopleAfterCrash(choices, answers){
+    choices = ["Что с Джесси?", "Что с учителем?", "Что с водителем автобуса?", "Что с остальными студентами?"]
+    answers = [howisjessy, howisteacher, howisdriver, howarestudents]
+    for(let i = 0; i<4; ++i){
+        choice = await makeChoice(choices, answers)
+        await answers[choice]()
+        choices.splice(choice, 1)
+        answers.splice(choice, 1)
+        console.log(choices)
+        console.log(answers)
+    }
+}
+
+let howisjessy = async (branch)=>{
+    await heroMsg("Цела. Я, когда увидел, что вот вот врежемся, разбудил ее и  мы спрятались.")
+    await heroMsg("Но вид у нее не очень, нужно осмотреть тут все. Может найду у кого воды для нее")
+}
+
+let howisteacher = async (branch)=>{
+    await heroMsg("Он вылетел через лобовое у меня на глазах..")
+    await heroMsg("Я думаю, что ему уже не помочь..")
+}
+
+let howisdriver = async (branch)=>{
+    await heroMsg("Зажат в кабине, вроде шевелится")
+    choices = ["Иди помоги ему", "Не трогай его, мало ли что"]
+    answers = ["Посмотрим, что я смогу сделать", "С дуба рухнул?"]
+    choice = await makeChoice(choices)
+    await heroMsg(answers[choice])
+}
+
+let howarestudents = async (branch)=>{
+    await heroMsg("Несколько человек  выбежали и куда-то понеслись, двое лежат без сознания")
+}
+
 start()

@@ -10,21 +10,24 @@ body {
   background-color: #000000;
 }
 
-.chat {
+#chat {
   width: 100%;
   height: 100%;
   background: #272c46;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 7vh 1fr 30vh;
+      grid-template-rows: 7vh 1fr 30vh;
 }
 
 @media screen and (min-width: 768px) {
-  .chat {
+  #chat {
     width: 50vw;
     margin: 0 auto;
   }
 }
 
-.chat #header {
-  height: 7vh;
+#chat #header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -34,19 +37,22 @@ body {
   padding: 15px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid #252942;
 }
 
-.chat #header #fullscreen {
+#chat #header #fullscreen {
   width: 30px;
   margin-left: auto;
 }
 
-.chat #header #hero-status {
+#chat #header #hero-status {
   font-size: 0.8em;
   opacity: 0.7;
 }
 
-.chat #header .heroinfo {
+#chat #header .heroinfo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,14 +62,14 @@ body {
   color: #fff;
 }
 
-.chat #header .heroinfo .avatar {
+#chat #header .heroinfo .avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 15px;
 }
 
-.chat #messages-container {
+#chat #messages-container {
   background-color: #272C46;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg %3E%3Cpolygon fill='%23242d50' points='100 57.1 64 93.1 71.5 100.6 100 72.1'/%3E%3Cpolygon fill='%232e365a' points='100 57.1 100 72.1 128.6 100.6 136.1 93.1'/%3E%3Cpolygon fill='%23242d50' points='100 163.2 100 178.2 170.7 107.5 170.8 92.4'/%3E%3Cpolygon fill='%232e365a' points='100 163.2 29.2 92.5 29.2 107.5 100 178.2'/%3E%3Cpath fill='%23383F64' d='M100 21.8L29.2 92.5l70.7 70.7l70.7-70.7L100 21.8z M100 127.9L64.6 92.5L100 57.1l35.4 35.4L100 127.9z'/%3E%3Cpolygon fill='%23161a2e' points='0 157.1 0 172.1 28.6 200.6 36.1 193.1'/%3E%3Cpolygon fill='%231a1f32' points='70.7 200 70.8 192.4 63.2 200'/%3E%3Cpolygon fill='%231F2337' points='27.8 200 63.2 200 70.7 192.5 0 121.8 0 157.2 35.3 192.5'/%3E%3Cpolygon fill='%231a1f32' points='200 157.1 164 193.1 171.5 200.6 200 172.1'/%3E%3Cpolygon fill='%23161a2e' points='136.7 200 129.2 192.5 129.2 200'/%3E%3Cpolygon fill='%231F2337' points='172.1 200 164.6 192.5 200 157.1 200 157.2 200 121.8 200 121.8 129.2 192.5 136.7 200'/%3E%3Cpolygon fill='%23161a2e' points='129.2 0 129.2 7.5 200 78.2 200 63.2 136.7 0'/%3E%3Cpolygon fill='%231F2337' points='200 27.8 200 27.9 172.1 0 136.7 0 200 63.2 200 63.2'/%3E%3Cpolygon fill='%231a1f32' points='63.2 0 0 63.2 0 78.2 70.7 7.5 70.7 0'/%3E%3Cpolygon fill='%231F2337' points='0 63.2 63.2 0 27.8 0 0 27.8'/%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;
@@ -76,7 +82,6 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 15px;
-  height: 63vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-transition: 0.5s;
@@ -84,7 +89,7 @@ body {
   position: relative;
 }
 
-.chat #messages-container .message {
+#chat #messages-container .message {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -104,7 +109,7 @@ body {
           box-sizing: border-box;
 }
 
-.chat #messages-container .message .time {
+#chat #messages-container .message .time {
   position: absolute;
   right: 5px;
   bottom: 5px;
@@ -117,7 +122,7 @@ body {
           user-select: none;
 }
 
-.chat #messages-container .message.my-message {
+#chat #messages-container .message.my-message {
   -ms-flex-item-align: end;
       -ms-grid-row-align: end;
       align-self: end;
@@ -153,7 +158,7 @@ body {
   }
 }
 
-.chat #messages-container .message.my-message .corner {
+#chat #messages-container .message.my-message .corner {
   width: 20px;
   height: 10px;
   background: #215bfa;
@@ -164,7 +169,7 @@ body {
   display: none;
 }
 
-.chat #messages-container .message.hero-message {
+#chat #messages-container .message.hero-message {
   -ms-flex-item-align: start;
       -ms-grid-row-align: start;
       align-self: start;
@@ -200,7 +205,7 @@ body {
   }
 }
 
-.chat #messages-container .message.hero-message .corner {
+#chat #messages-container .message.hero-message .corner {
   width: 20px;
   height: 10px;
   background: #3d4053;
@@ -211,7 +216,7 @@ body {
   display: none;
 }
 
-.chat #messages-container .world-message {
+#chat #messages-container .world-message {
   -ms-flex-item-align: center;
       align-self: center;
   font-weight: bold;
@@ -262,7 +267,6 @@ body {
 }
 
 #choices-block {
-  height: 30vh;
   background: #3d4053;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -316,6 +320,11 @@ body {
   margin-bottom: 15px;
   -webkit-animation: choiceAppear 0.3s ease-in-out;
           animation: choiceAppear 0.3s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
 }
 
 @-webkit-keyframes choiceAppear {
