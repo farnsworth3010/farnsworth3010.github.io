@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/farnsworth3010.github.io/undefined/static/css/main.02386e78.css",
-    "main.js": "/farnsworth3010.github.io/undefined/static/js/main.ff785e83.js",
-    "static/js/787.90e25fba.chunk.js": "/farnsworth3010.github.io/undefined/static/js/787.90e25fba.chunk.js",
-    "index.html": "/farnsworth3010.github.io/undefined/index.html",
-    "main.02386e78.css.map": "/farnsworth3010.github.io/undefined/static/css/main.02386e78.css.map",
-    "main.ff785e83.js.map": "/farnsworth3010.github.io/undefined/static/js/main.ff785e83.js.map",
-    "787.90e25fba.chunk.js.map": "/farnsworth3010.github.io/undefined/static/js/787.90e25fba.chunk.js.map"
+    "main.css": "/undefined/static/css/main.02386e78.css",
+    "main.js": "/undefined/static/js/main.62e655e2.js",
+    "static/js/787.90e25fba.chunk.js": "/undefined/static/js/787.90e25fba.chunk.js",
+    "index.html": "/undefined/index.html",
+    "main.02386e78.css.map": "/undefined/static/css/main.02386e78.css.map",
+    "main.62e655e2.js.map": "/undefined/static/js/main.62e655e2.js.map",
+    "787.90e25fba.chunk.js.map": "/undefined/static/js/787.90e25fba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.02386e78.css",
-    "static/js/main.ff785e83.js"
+    "static/js/main.62e655e2.js"
   ]
 }
